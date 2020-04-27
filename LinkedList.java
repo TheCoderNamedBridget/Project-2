@@ -1,6 +1,8 @@
 /**
  * This class creates a linked list and offers
- * methods to manipulate that linkedlist
+ * methods to manipulate that linked list
+ * @Bridget Naylor
+ * @date 4/26/20
  */
 
 import java.util.ArrayList;
@@ -111,7 +113,7 @@ public class LinkedList {
 		
 		for (int i = 0; i < sizeOfList; i++) {
 			
-			if ( currentNode.equals(newSong) ) {
+			if ( currentNode.data.equals(newSong) ) {
 				
 				return newSong;
 				
@@ -174,7 +176,7 @@ public class LinkedList {
 		
 		for (int i = 0; i < sizeOfList; i++) {
 			
-			if ( currentNode.data.getYear() > decade && currentNode.data.getYear() < decade + 9 ) {
+			if ( currentNode.data.getYear() >= decade && currentNode.data.getYear() <= decade + 9 ) {
 				
 				songsInDecade.add( currentNode.data );
 				
@@ -194,133 +196,76 @@ public class LinkedList {
 	 */
 	public void sort () {
 		
+		//keeps track of the head of the linked list
 		Node firstNode = first;
 		
+		//keeps track of the current node
 		Node currentNode = first;
-		
-		int numTimesSorted = 0;
-		
 
+		//true if list is sorted, false otherwise
 		boolean sorted = false;
 		
-		
+		//Repeats iteration and bubble sorting until the list is sorted
 		while ( !sorted ) {
 			
-			System.out.println("FirstNodew Value " + first.data.getTitle() + " " + first.data.getRating());
-			
+			//sets sorted to true
 			sorted = true;
 			
-			System.out.println("Numtimessorted " + numTimesSorted );
-			
+			//iterates through linked list to swap smaller ratings with larger rating
 			for (int i = 0; i < size(); i++) {
 
 				Node nextNode = null;
 				
-				if ( currentNode != null ) {
+				if ( currentNode != null ) {//checks if next node is usable
 					
 					nextNode = currentNode.next;
-					
 					
 				}
 				
 
+				//checks to make sure next node and current node are not null
 				if ( nextNode != null && currentNode != null) {
 					
-					System.out.println("CurrentNodesdifference "+ currentNode.data.getTitle() + currentNode.data.getRating() + " - " + nextNode.data.getTitle() + nextNode.data.getRating() +  " = "  + currentNode.data.compareTo( nextNode.data ));
-					if ( currentNode.data.compareTo( nextNode.data ) < 0 && currentNode.data.compareTo( nextNode.data ) > -100) {//TODO Fix this part of the algorityhm
+					//checks if current node's rating is larger than next node's rating
+					if ( currentNode.data.compareTo( nextNode.data ) < 0 && currentNode.data.compareTo( nextNode.data ) > -100) {
 						
-
-						System.out.println("CurrentNodeBEFORE : " + currentNode.data.getTitle() + " rating " + currentNode.data.getRating());
-						System.out.println("NextNodeBEFORE " + nextNode.data.getTitle() + " rating " + nextNode.data.getRating());
-						
+						//swapping the current node and next node's data if current node rating > next node rating
 						Song placeHolder = currentNode.data;
 						
 						currentNode.data = nextNode.data;
 						
 						nextNode.data = placeHolder;
 						
-						
-
-						System.out.println("PlaceholderAFTER : " + placeHolder.getTitle() + " rating " + placeHolder.getRating());
-						System.out.println("CurrentNodeAFTER : " + currentNode.data.getTitle() + " rating " + currentNode.data.getRating());
-						System.out.println("NextNodeAFTER " + nextNode.data.getTitle() + " rating " + nextNode.data.getRating() + "\n");
-
-						System.out.println("FirstNodeDown " + first.data.getTitle() + " " + first.data.getRating());
+						//if a value later in the list has the greatest rating it will be set as the new head of the linked list
 						if ( currentNode.equals( firstNode )) {
 							
 							firstNode = currentNode;
 							
 						}
 						
+						//a swap was made so sorted = false
 						sorted = false;
 						
 					} 
 					
+					//moving on to the next node
 					currentNode = currentNode.next;
-					
-					//System.out.println(" not stuck " ); 
+
 
 				} 
 
 
 				
 			}
-			//numTimesSorted +=1;
-			
-			System.out.println( "Sorted " + sorted  + " Numtimes " + numTimesSorted);
+
+			//if list is iterated through but there was a swap then restart at the new first value of the list
 			if ( !sorted && currentNode.next == null ) {
 			
-			currentNode = first;
-			numTimesSorted += 1;
+				currentNode = first;
 			
 			}
-//			if ( !sorted && currentNode.next == null ) {
-//				
-//				currentNode = first;
-//				numTimesSorted += 1;
-//				
-//			} else if ( sorted ) {
-//				
-//				while ( first != null) {
-//					
-//					System.out.println("Current Node " + first.data.getTitle() + " " + first.data.getRating()); 
-//
-//					first = first.next;
-//
-//					}
-//				
-//				return;
-//				
-//			}
-			
-			
-			//checks if list is not sorted and if list is not sorted sets current node to the first node to start sort over again
-			
-			
-			if ( numTimesSorted < 100 ) {
-				System.out.println("numtimes " + numTimesSorted );
-				
-				Node placeHolderFirst = first;
-				while ( first != null) {
-					
-					System.out.println("Current Node " + first.data.getTitle() + " " + first.data.getRating()); 
-
-					first = first.next;
-
-				}
-				
-				first = placeHolderFirst;
-				if ( numTimesSorted == 9 ) {
-					return;
-				}
-				
-			}
-
-			
 
 		}
-		
-		
 		
 	}
 	
@@ -331,14 +276,10 @@ public class LinkedList {
 		
 		Node currentNode = first;
 		
-		//System.out.println( currentNode.data.toString() );
-		
-		System.out.println( "HERE " + size());
+		System.out.println( "Number of Songs: " + size());
 		
 		for (int i = 0; i < size(); i ++) {
-			
-			
-			
+
 			System.out.println( currentNode.data.toString() );
 			
 			if ( currentNode.next != null ) {
@@ -346,14 +287,11 @@ public class LinkedList {
 				currentNode = currentNode.next;
 				
 			}
-			//
-			
-		}
-		
+		}	
 	}
 	
 	/**
-	 * 
+	 * Represents the data in a string format
 	 */
 	@Override public String toString( ) {
 		
