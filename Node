@@ -1,0 +1,27 @@
+
+
+/**
+ * 
+ * @author Bridget Naylor
+ *
+ */
+public class Node {
+	
+	public Song data;
+	public Node next;
+	
+	public Node(Song s ){
+		data = s;
+		next = null;
+	}
+	
+	public Node(Song s, Node n ){
+		data = s;
+		next = n;
+	}
+	
+//	@Override
+//	public String toString( ) {
+//		return data;
+//	}
+}
