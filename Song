@@ -1,0 +1,177 @@
+
+
+/**
+ * Data Members (all private): string title, string artist, int year, and int rating (1-5 stars).
+ * Methods: 
+ * 1.Constructor - pass in and set the title and artist (year and rating are 0).
+ * 2.Constructor - pass in and set all data members.  
+ * 3.get methods - for each data member (no set methods).  
+ * 4.toString - all data on one line in the same format as the file. TODO: figure out what this means
+ * 5.equals - compares by title and artist.
+ * 6.compareTo - compare by rating (5-1 stars). 
+ * If the ratings are the same, then compare by artist, then title.
+ * 
+ * @author Bridget Naylor 
+ *
+ */
+public class Song {
+	
+	//title of the song
+	private String title;
+	
+	//name of the artist
+	private String artist;
+	
+	//year song was published
+	private int year;
+	
+	//rating out of 5 stars for song
+	private int rating;
+	
+	/**
+	 * 2 args constructor for songs with song name and artist name
+	 * @param songTitle
+	 * @param songArtist
+	 */
+	Song(String songTitle, String songArtist){
+		
+		title = songTitle;
+		artist = songArtist;
+		year = 0;
+		rating = 0;
+		
+	}
+	
+	/**
+	 * 4 args constructor with name, artist, year, and rating
+	 * @param songTitle
+	 * @param songArtist
+	 * @param songYear
+	 * @param songRating
+	 */
+	Song(String songTitle, String songArtist, int songYear, int songRating){
+		
+		title = songTitle;
+		artist = songArtist;
+		year = songYear;
+		rating = songRating;
+		
+	}
+	
+	/**
+	 * 
+	 * @return title of the song
+	 */
+	public String getTitle() {
+		
+		return title;
+		
+	}
+	
+	/**
+	 * 
+	 * @return name of the artist
+	 */
+	public String getArtist() {
+		
+		return artist;
+		
+	}
+	
+	/**
+	 * 
+	 * @return year of the song
+	 */
+	public int getYear() {
+		
+		return year;
+		
+	}
+	
+	/**
+	 * 
+	 * @return rating of the song
+	 */
+	public int getRating() {
+		
+		
+		return rating;
+		
+	}
+	
+	/**
+	 * 
+	 * @param title
+	 * @param artist
+	 * @param year
+	 * @param rating
+	 * @return a list string of title, artist, year and rating in same format as the text file
+	 * 
+	 */
+	@Override public String toString() {
+		
+		return title + "," + artist + "," + year + "," + rating;
+		
+	}
+	
+	/**
+	 * 
+	 * @param song to compare to
+	 * @return true if song is by the same artist and has the same title
+	 */
+	public boolean equals ( Song song ) {
+		
+		return song.getTitle().equals(title) && song.getArtist().equals(artist);
+		
+	}
+	
+	/**
+	 * compareTo - compare by rating (5-1 stars). 
+	 * If the ratings are the same, then compare by artist, then title.
+	 * @param song
+	 * @return
+	 */
+	public int compareTo ( Song song) {
+		
+		//implicit is the Current Node
+		//explicit is the Next node
+
+		
+		
+		if ( song.getRating() != rating ) {
+			
+			
+			return rating - song.getRating();//if current node - next node rating is negative then next node is larger than current node
+			
+		} else {
+			
+			
+			
+			if ( song.getArtist().charAt(0) > artist.charAt(0) ) {
+				
+				return 100;
+				
+			} else if ( song.getArtist().charAt(0) < artist.charAt(0) ) {
+				
+				return -100;
+				
+			} else {
+				
+				if ( song.getTitle().charAt(0) > artist.charAt(0) ) {
+					
+					return 100;
+					
+				} else if ( song.getTitle().charAt(0) < artist.charAt(0) ) {
+					
+					return -100;
+				}
+				
+			}
+			
+		} 
+		
+		return 0;
+		
+	}
+
+}
